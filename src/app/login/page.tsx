@@ -22,7 +22,9 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      router.push('/');
+      const data = await res.json();
+      localStorage.setItem('token', data.token);
+      router.push('/profile');
     } else {
       const data = await res.json();
       setError(data.message || 'เกิดข้อผิดพลาด');
